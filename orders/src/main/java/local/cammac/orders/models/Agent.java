@@ -1,5 +1,7 @@
 package local.cammac.orders.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class Agent {
     private String country;
 
     @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties(value = "agent", allowSetters = true)
     private List<Customer> customers = new ArrayList<Customer>();
 
 

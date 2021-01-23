@@ -1,5 +1,7 @@
 package local.cammac.orders.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +28,12 @@ public class Customer {
     private String phone;
 
     @ManyToOne
-    @JoinColumn(name = "agent", nullable = false)
+    @JoinColumn(name = "agentcode", nullable = false)
+    @JsonIgnoreProperties(value = "customers", allowSetters = true)
     private Agent agent;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties(value = "customer", allowSetters = true)
     private List<Order> orders = new ArrayList<Order>();
 
     public Customer() {
@@ -155,5 +159,13 @@ public class Customer {
 
     public void setAgent(Agent agent) {
         this.agent = agent;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
