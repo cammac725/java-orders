@@ -26,4 +26,16 @@ public class OrderServicesImpl implements OrderServices {
     public Order save(Order order) {
         return ordersrepos.save(order);
     }
+
+    @Transactional
+    @Override
+    public void deleteAllOrders() {
+        ordersrepos.deleteAll();
+    }
+
+    @Transactional
+    @Override
+    public void delete(String ordname) {
+
+    }
 }

@@ -5,10 +5,7 @@ import local.cammac.orders.services.OrderServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/orders")
@@ -24,6 +21,11 @@ public class OrderController {
         return new ResponseEntity<Object>(order, HttpStatus.OK);
     }
 
-    // http://localhost:2021/orders/advanceamount
+    // DELETE operations (DELETE)
+    @DeleteMapping(value = "/orders/order/{ordname}")
+    public ResponseEntity<?> deleteOrderByName(@PathVariable String ordname) {
+        orderServices.delete(ordname);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

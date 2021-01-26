@@ -8,4 +8,7 @@ public interface OrderServices {
 
     Order findOrderById(long id);
 
+    void deleteAllOrders();
+
+    void delete(String ordname);
 }
